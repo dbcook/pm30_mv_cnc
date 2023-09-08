@@ -77,7 +77,8 @@ motor fails I'm going to replace the Z servo with a 86N-DHT-A6MDB that has a
 If I had it to do over, I'd probably go with the Clearpath servos based on the
 failure history with the DMM units and the fact that Clearpath has an extensive
 series of integrated step/direction servos that don't require a separate
-driver.  The Clearpath product line is extensive and has many more options for
+driver, though you then pick up a need for a beefy 70-80VDC supply.
+The Clearpath product line is extensive and has many options for
 motor size and power options.
 
 ## Controller Design
@@ -91,3 +92,48 @@ of separate fuses on the controller logic AC power connections.
 Note: browser dark mode will make this hard to read; use light mode!
 
 ![Power Section Block Diagram](art/PM-30MV_power_section.svg)
+
+### Digital Section
+
+#### Current Implementation
+
+The current digital section is based around an Ethernet SmoothStepper coupled
+to a CNC4PC C82 breakout board, driven by a touchscreen Windows PC running Mach4
+CNC software.  A VistaCNC hand controller is used for manual motion.
+
+This approach is workable, but the PC parallel port emulation architecture of
+the SmoothStepper and breakout board is archaic, and there are enough problems
+with Mach4 (e.g. unsafe with probes due to unexpected rapid moves, bug regressions,
+etc.) that I am already in progress with a breadboard for a Centroid Acorn based
+control system.  Someday my breakout board will again die, and I'm concerned that by
+the time that happens, parallel port emulation breakout boards will no longer
+be available - the ecosystem is diminishing.
+
+If it were not for the great work of the developer who does the Ethernet Smoothstepper
+driver for Mach4, a change away from the original control design would have been
+forced quite a while ago.
+
+TODO: reconstruct diagram reflecting change to C82 breakout board in the current
+system.
+
+#### Future Implementation
+
+There are a few basic choices for non Mach4 based CNC on a mill:
+
+* Get a commercial CNC mill with a dedicated control system.  The options that
+could possibly be within reach are
+    *  Tormach PCNC series with PathPilot (based onLinuxCNC)
+    *  A small Haas vertical milling system (proprietary SW)
+* Centroid Acorn  (or Oak but that's quite a bit more money)
+* LinuxCNC
+
+Tormach PathPilot is really cool but they don't sell it for non Tormach machines.
+It's based on LinuxCNC and would theoretically be open source, but there are ways
+to structure your CNC software so that critical things would reside in separate
+processes that would not incur source code publication obligations.
+
+LinuxCNC is interesting because it's open source, but you need to configure it
+yourself for your control hardware and do the integration.  There are a few
+pretty good UI's available, but lately there has
+been a shortage of parts for the Mesa I/O boards typically used with LinuxCNC.
+I could deal with all that, but I need to choose where to spend my time.
