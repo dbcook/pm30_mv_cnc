@@ -88,4 +88,4 @@ Here is a block diagram of the power section of the DMM servo system.  This
 design follows the DMM recommended setup almost exactly, except for inclusion
 of separate fuses on the controller logic AC power connections.
 
-![Power Section Block Diagram](art/PM-30MV_power_section.drawio)
+![Power Section Block Diagram](art/PM-30MV_power_section.svg)
