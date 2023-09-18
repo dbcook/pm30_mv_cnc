@@ -101,6 +101,15 @@ The current digital section is based around an Ethernet SmoothStepper coupled
 to a CNC4PC C82 breakout board, driven by a touchscreen Windows PC running Mach4
 CNC software.  A VistaCNC hand controller is used for manual motion.
 
+Major components
+*  [Ethernet Smoothstepper](https://warp9td.com/)
+*  [CNC4PC C82 breakout board](https://cnc4pc.com/c82-dual-port-multifunction-board-b.html)
+*  [VistaCNC Pendant]()
+
+Here is the block diagram for the digital section:
+
+![Digital Section Block Diagram](art/PM30MV_digital_section.svg)
+
 This approach is workable, but the PC parallel port emulation architecture of
 the SmoothStepper and breakout board is archaic, and there are enough problems
 with Mach4 (e.g. unsafe with probes due to unexpected rapid moves, bug regressions,
@@ -112,9 +121,6 @@ be available - the ecosystem is diminishing.
 If it were not for the great work of the developer who does the Ethernet Smoothstepper
 driver for Mach4, a change away from the original control design would have been
 forced quite a while ago.
-
-TODO: reconstruct diagram reflecting change to C82 breakout board in the current
-system.
 
 #### Future Implementation
 
