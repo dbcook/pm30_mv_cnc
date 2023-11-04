@@ -90,6 +90,34 @@ driver, though you then pick up a need for a beefy 70-80VDC supply.
 The Clearpath product line is extensive and has many options for
 motor size and power options.
 
+## Spindle Motor Upgrade Possibilities
+
+The PM-30MV stock motor leaves much to be desired in the way of spindle RPM, topping
+out at 3000.  That is enough to get most milling operations done, but not necessarily
+very fast.
+
+All of the upgrades worth considering will give up the manual quill function on the
+Z axis, but provide considerably better runout overall, and switch the tool holding
+taper from R8 (or TTS) to ISO30.
+
+### CNC Depot
+
+CNC Depot has a series of ISO30 taper air-cooled spindles with German-made motors that
+will generate much higher RPMs than the stock PM-30MV spindle.
+
+[3HP 18krpm](https://www.cncdepot.net/product-page/rm30-standalone-spindle) This upgrades
+the available power from ~2HP to a full 3HP and provides 18,000 RPM, which will enable
+fine cutting and engraving of aluminum with small tools, as well as high speed routing.
+It will also increase the realistic material removal rate by at least 50% over the stock
+PM-30MV.
+
+This motor uses a 24V cooling fan, for which power must be provided.  The base version
+costs $3200 (2023), and provides 18krpm with steel bearings.  A version with ceramic
+bearings is also available for $3500 and will hit 24krpm.
+
+To use one of these motors, you'll need to build a sturdy motor mount box to go between
+the back face of the motor and the head tilt interface of the PM-30MV Z carriage.
+
 ## Controller Design
 
 ### Power Section 
