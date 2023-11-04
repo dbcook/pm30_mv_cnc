@@ -20,29 +20,34 @@ quantized in the electronic controller (seems like 32 steps) but that
 doesn't hurt much in practice.  It's trivial to implement a switch on
 the 0-10V signal to transfer
 control from the potentiometer on the stock control box to the CNC controller.
+The BLDC gives better torque at low RPMs than typical VFD AC motors.
 
 * The E-stop button that comes with the PM-30 is a clone of the standard
-Omron type with stackable contacts, so you can easily add a contact module to
+Omron/IDEC type with stackable contacts, so you can easily add a contact module to
 provide the E-stop input to the CNC controller.
 
 * The spindle has a pulley drive that provides 1500rpm and 3000 rpm ranges, so
-you can get more torque at lower speeds if desired.  In practice, when using
+you can get more torque at lower speeds if desired.  In practice, the BLDC
+motor makes this feature almost redundant.  When using
 carbide tooling on aluminum I've never encountered a need to go to the lower
 speed pulley.
 
 * The column has a square flat mounting surface to the base casting and is not
 cantilevered, unlike many small mills.  That allows the column to be shimmed
 on the base if needed to adjust head nod.  On my unit the verticality of the
-column is very good and I have not had to shim it.
+column is very good and I have not had to shim it.  That said, the dimensions
+of the column mount faces are fairly small, which would make accurate shimming
+pretty tough as you'd need sub-0.001" shims.
 
 * It's possible to extend the Y travel in the outward direction by around an
 inch via a simple modification to the base casting.  This doesn't really
 increase the net Y travel wtihout resetting the work on the table, but does
-allow some additional flexibility in positioning larger workpieces.
+allow some additional flexibility in positioning larger workpieces on the table.
 
 ## The CNC Conversion Kit
 
-I used the PM-30 conversion kit from [Arizona CNC Kits](https://www.arizonacnckits.com/).  The owner Dave Clements is fantastic to work with and very conscientious.
+I used the PM-30 conversion kit from [Arizona CNC Kits](https://www.arizonacnckits.com/).  
+The owner Dave Clements is fantastic to work with and very conscientious.
 When my Y mount plate turned out to be too thick for my particular unit, he
 made me a new one immediately.
 
@@ -62,17 +67,21 @@ The closed-loop steppers weren't a realistic option when I built my system
 in 2019, but they have come a long way and now provide speed and torque
 approaching that of servos at lower cost.
 
-I used the 750W DMM 86N-DHT-A6MD1 (NEMA flavor) servos from [Dynamic Motor Motion](https://www.dmm-tech.com/products_main.html) with their DYN4 series drivers.
+I used the 750W DMM 86N-DHT-A6MD1 (NEMA flavor) servos from
+[Dynamic Motor Motion](https://www.dmm-tech.com/products_main.html) with their DYN4 series drivers.
 A motor+drive pair costs about $USD 560 on the 2023 price list.  It would
 have been OK to use the next smaller size servos for the X and Y axes, but I
 consciously chose to keep them all the same type for interchangeability.
-Overall I've been happy with the performance, but I've had two servos burn out
-(one on X and one on Z) in the four years I've been running the system, despite
-only moderate levels of use.  In both cases it was the motors rather than the DYN4 drive units that failed.
+Overall I've been happy with the performance, but I've had all three original servos burn out
+in the four years I've been running the system, despite
+only moderate levels of use.  In all cases it was the motors rather than the DYN4 drive units that failed.
 
-The Z axis has some tendency to sink under its weight, so the next time the Z
-motor fails I'm going to replace the Z servo with a 86N-DHT-A6MDB that has a
-24VDC holding brake.
+The Z axis has some tendency to sink under its weight, especially when you de-power
+the servos, so the next time the Z motor fails I'm going to consider replacing it
+with a 86N-DHT-A6MDB that has a 24VDC holding brake.
+However that feature does require continuous 24V current
+to hold the brake, so if you want to shut down the system completely you still need
+to physically hold the Z axis up at final shutdown.
 
 If I had it to do over, I'd probably go with the Clearpath servos based on the
 failure history with the DMM units and the fact that Clearpath has an extensive
@@ -104,7 +113,7 @@ CNC software.  A VistaCNC hand controller is used for manual motion.
 Major components
 *  [Ethernet Smoothstepper](https://warp9td.com/)
 *  [CNC4PC C82 breakout board](https://cnc4pc.com/c82-dual-port-multifunction-board-b.html)
-*  [VistaCNC Pendant]()
+*  [VistaCNC Pendant](https://www.vistacnc.com/b01_pendant_P4_P4S/pendant_P4_P4S.htm)
 
 Here is the block diagram for the digital section:
 
